@@ -33,10 +33,7 @@ exports.register=async(req,res)=>{
     }      
 }
 
-// this is something we are going to be nothing we response 
-// this is something we are going here nothing sublime 
-// this is not gonna be anything if this keeps up to me so that we are not going something we are sure there is not hing juggling between n=me 
-// you and me are not going to believe in something 
+
 
 
 exports.login=async (req,res)=>{
@@ -94,8 +91,8 @@ exports.logout=async(req,res)=>{
 }
 exports.followUser=async(req,res)=>{
     try{
-        const userToFollow=await User.findById(req.params.id)
-        const loggedInUser=await User.findById(req.user._id)
+        const userToFollow=await User.findById(req.params.id)//from the url of the page we are getting the id of the user we want to follow
+        const loggedInUser=await User.findById(req.user._id)// 
         if(!userToFollow){
             return res.status(404).json({
                 success:false,
@@ -218,12 +215,10 @@ exports.deleteMyProfile=async(req,res)=>{
     }
 
     // removing user from followers and following 
-    // no it won't pass out to third rate companinons are from the first division 
-    // and the second rate divisions are from there too 
-   // we are done for if 
+   
     for(let i=0;i<followers.length;i++)
     {
-        // to think this would be the end of mine ha i never knew such thing existed in the time spaxe 
+        
         const follower=await User.findById(followers[i]);
         const index=follower.following.indexOf(userId);
         follower.following.splice(index,1)
@@ -253,17 +248,22 @@ exports.deleteMyProfile=async(req,res)=>{
 }
 
 
-exports.myProfile=async(req,res)=>{
+exports.myProfile = async(req, res) => {
     try {
-        const user=await User.findById(req.user._id).populate("posts")
-        
+        const user = await User.findById(req.user._id).populate(
+            "posts followers following"
+        );
+        res.status(200).json({
+            success: true,
+            user,
+        });
     } catch (error) {
         res.status(500).json({
-            success:false,
-            message:error.message,
-        })
+            success: false,
+            message: error.message,
+        });
     }
-}
+};
 
 
 exports.getUserProfile=async(req,res)=>{
@@ -377,4 +377,3 @@ exports.resetPassword=async(req,res)=>{
         })
     }
 }
-// this is nothing to scoff at we are merely building the passion of the 
