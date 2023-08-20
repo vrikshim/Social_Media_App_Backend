@@ -1,5 +1,7 @@
 const Post=require("../models/Post");
 const User=require("../models/User")
+// totol 7 functions
+// createpost ,deletepost likeandunlikepost getpostoffollowing updatecaption commentonpost deletecomment
 exports.createPost=async (req,res)=>{
     try{
         
@@ -58,19 +60,7 @@ exports.deletePost=async (req,res)=>{
         
            console.log("hejsklo"+post+"this is post")
            console.log("this is good")
-        //   await post.remove();
-        //    console.log("hell this is working just fine for me")
-        //   const user =await User.findById(req.user._id)
-        //   const index=user.posts.indexOf(req.params.id);
-        //   user.posts.splice(index,1);
-        //   console.log("this is printed before the user")
-        //   console.log(user)
-        //   console.log("this is printed after the user")
-        //   await user.save();
-        //   res.status(200).json({
-        //     success:true,
-        //     message:"Post deleted",
-        //   })
+ 
 
         try {
             await post.deleteOne();
@@ -104,13 +94,10 @@ exports.deletePost=async (req,res)=>{
     }
 }
    
-// this is not something we prepared to in our life 
 
 
-// this is not something we are proud of 
-// we know we are here with nothing but something out of the blue we
-// we are doing something with this 
-// we are here 
+
+
 exports.likeAndUnlikePost=async(req,res)=>{
     try{
         
@@ -142,7 +129,7 @@ exports.likeAndUnlikePost=async(req,res)=>{
             })
          }
 
-/// loak 
+
        
     } catch(error){
         res.status(500).json({
@@ -154,11 +141,7 @@ exports.likeAndUnlikePost=async(req,res)=>{
 
 exports.getPostOfFollowing=async(req,res)=>{
     try{
-    //   const user =await User.findById(req.user._id).populate("following","posts")
-    //   res.status(200).json({
-    //     success:true,
-    //     following:user.following,
-    //   })
+
 
     const user =await User.findById(req.user._id)
     const posts=await Post.find({

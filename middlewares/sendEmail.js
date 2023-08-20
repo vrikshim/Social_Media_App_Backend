@@ -17,4 +17,3 @@ exports.sendEmail=async(options)=>{
     await transport.sendMail(mailOptions)
 }
 
-// this is som
