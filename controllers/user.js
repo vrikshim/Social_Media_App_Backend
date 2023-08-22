@@ -2,6 +2,8 @@ const User=require("../models/User");
 const Post=require("../models/Post")
 const {sendEmail}=require("../middlewares/sendEmail")
 const crypto=require("crypto")
+//total 13 features
+// functions register login logout followuser updatepassword updateprofile deletemyprofile myprofile getuserprofile getallusers forgotpassword resetpassword
 exports.register=async(req,res)=>{
     try{
        const {name,email,password}=req.body;
@@ -135,9 +137,7 @@ exports.followUser=async(req,res)=>{
         })
     }
 }
-// this is something we are not gonna believe in 
-// we are not gonna be in the 
-// we are not here to entertain you on the stuff y
+
 
 exports.updatePassword=async(req,res)=>{
     try {
@@ -206,7 +206,7 @@ exports.deleteMyProfile=async(req,res)=>{
     const userId=user._id
     await user.deleteOne()
 
-    //logout user after deleting the profile  t
+    //logout user after deleting the profile  
     res.cookie("token",null,{expires:new Date(Date.now()),httpOnly:true,})
     // deleting all posts of the user
     for(let i=0;i<posts.length;i++){
@@ -228,7 +228,7 @@ exports.deleteMyProfile=async(req,res)=>{
 
     for(let i=0;i<following.length;i++)
     {
-        // to think this would be the end of mine ha i never knew such thing existed in the time spaxe 
+        
         const follows=await User.findById(following[i]);
         const index=follows.followers.indexOf(userId);
         follows.followers.splice(index,1)

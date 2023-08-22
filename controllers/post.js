@@ -219,6 +219,7 @@ exports.commentOnPost=async(req,res)=>{
         }
         else
        {
+        // hello
          post.comments.push({
          user:req.user._id,
          comment:req.body.comment,
